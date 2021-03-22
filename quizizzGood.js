@@ -2,6 +2,7 @@ let quizDataPath = "https://quizizz.com/api/main/quiz/";
 let quizData;
 let questionData;
 let prevUrl = "";
+let autoProceed = confirm("Would you like to auto-proceed?");
 
 if (getCookie("hackId") != "") {
     quizData = getQuizData();
@@ -26,7 +27,7 @@ let url = window.location.href.toString();
 if (url.includes("quizizz.com/join/quiz/") && url.includes("/start")) {
     setCookie("hackId", url.split("/")[5], 0.1);
     //window.open(quizDataPath + getCookie("hackId"));
-    // document.querySelector("body > div > div.root-component > div > div > div > div.pre-game-screen > div.main-action-section > div.action-item-wrapper.default-card-styles.cta-section > div > div > button.primary-button.play-again > i").click();
+    if (autoProceed) {document.querySelector("body > div > div.root-component > div > div > div > div.pre-game-screen > div.main-action-section > div.action-item-wrapper.default-card-styles.cta-section > div > div > button.primary-button.play-again > i").click();}
     setTimeout(function() {location.reload();}, 100);
 }
 
@@ -69,7 +70,7 @@ function compareQuestion() {
                     let option = Choices[i].children[0].children[0].children[1].children[0].children[0].children[0];
                     if (option.outerHTML == question.structure.options[answer].text.replaceAll("  ", " ").replace("  ", " ")) {
                         option.innerHTML = "<correct-answer-x3Ca8B><u>" + option.innerHTML + "</u></correct-answer-x3Ca8B>"
-                        //option.click();
+                        if (autoProceed) {option.click();}
                     }
                 }
             } else {
@@ -79,7 +80,7 @@ function compareQuestion() {
                         index = answer[index];
                         if (option.outerHTML == question.structure.options[index].text.replaceAll("  ", " ").replace("  ", " ")) {
                             option.innerHTML = "<correct-answer-x3Ca8B><u>" + option.innerHTML + "</u></correct-answer-x3Ca8B>"
-                            //option.click();
+                            if (autoProceed) {option.click();}
                         }
                     }
                 }

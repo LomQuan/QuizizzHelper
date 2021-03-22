@@ -53,10 +53,10 @@ let tick = setInterval(function() {
 let answer;
 function compareQuestion() {
     let Choices = document.getElementsByClassName("options-container")[0].children[0].children;
-    let currentQuestionText = document.querySelector("body > div > div.root-component > div > div > div > div.page-container.in-quiz > div.screen.screen-game > div.transitioner.transitioner-component > div > div > div > div > div > div.question-container.themed.black > div > div > div > div > p");
+    let currentQuestionText = document.querySelector("#questionText > div");
     let submitButton = document.querySelector("body > div > div.root-component > div > div > div > div.page-container.in-quiz > div.screen.screen-game > div.control-center > div > div.submit-actions.flex-view.all-center.exp-subtext > div.show-tooltip.default > button > span");
-    if (currentQuestionText == null) currentQuestionText = document.querySelector("body > div > div.root-component > div > div > div > div.page-container.in-quiz > div.screen.screen-game > div.transitioner.transitioner-component > div > div > div > div > div > div.question-container.themed > div > div > div > div > p");
-    currentQuestionText = currentQuestionText.parentElement.innerHTML;
+    //if (currentQuestionText == null) currentQuestionText = document.querySelector("body > div > div.root-component > div > div > div > div.page-container.in-quiz > div.screen.screen-game > div.transitioner.transitioner-component > div > div > div > div > div > div.question-container.themed > div > div > div > div > p");
+    currentQuestionText = currentQuestionText.innerHTML;
     // console.log(currentQuestionText);
     for (let question of Object.keys(questionData)) {
         question = questionData[question];
@@ -67,7 +67,7 @@ function compareQuestion() {
             if (typeof answer != "object") {
                 // console.log(question.structure.options[answer].text);
                 for (let i = 0; i < Choices.length; i++) {
-                    let option = Choices[i].children[0].children[0].children[1].children[0].children[0].children[0];
+                    let option = Choices[i].children[0].children[0].children[1].children[0].children[0];//.children[0];
                     if (option.outerHTML == question.structure.options[answer].text.replaceAll("  ", " ").replace("  ", " ")) {
                         option.innerHTML = "<correct-answer-x3Ca8B><u>" + option.innerHTML + "</u></correct-answer-x3Ca8B>"
                         if (autoProceed) {option.click();}

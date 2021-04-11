@@ -1,3 +1,7 @@
+# ARCHIVED
+I have archived this project but feel free to fork and make any updates or changes you would like. It was fun while it lasted, hope some people can still learn from some of my spaghetti code. :P
+
+
 # QuizizzHelper
 A little helper for online Quizizz
 
